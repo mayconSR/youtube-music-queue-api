@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
 let musicLinks = [];
+
+// Rota de inicio
+app.get('/', (req, res) => {
+  res.send('Bem-vindo à API de fila de músicas do YouTube!');
+});
 
 // verificar se o link é do YouTube
 function isValidYouTubeLink(url) {
@@ -33,6 +37,4 @@ app.get('/api/music', (req, res) => {
   res.json(musicLinks);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
